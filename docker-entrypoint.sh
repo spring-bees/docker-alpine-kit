@@ -11,15 +11,20 @@ init_config_path() {
 
 init_ansible_cfg() {
   if [ ! -d "/etc/ansible/ansible.cfg" ]; then
+    echo 'Create ansible.cfg'
     echo '[defaults]' > /etc/ansible/ansible.cfg
     echo 'host_key_checking=false' >> /etc/ansible/ansible.cfg
     echo 'command_warnings=false' >> /etc/ansible/ansible.cfg
+  else
+    echo 'Use volume mapping ansible.cfg'
   fi
 }
 
 init_ansible_hosts() {
   if [ ! -d "/etc/ansible/hosts" ]; then
     if [ "$ANSIBLE_SSH_HOSTS" != "" ]; then
+      echo 'Create ansible hosts'
+
       echo '[default]' > /etc/ansible/hosts
 
       IFS=', ' read -r -a ANSIBLE_SSH_HOSTS_ARRAY <<< $ANSIBLE_SSH_HOSTS
@@ -39,7 +44,9 @@ init_ansible_hosts() {
 
         echo '${NAME} ansible_ssh_host=${HOST} ansible_ssh_port=${PORT} ansible_ssh_user=${USER} ansible_ssh_pass=${PASS} ansible_become_pass=${SU_PASS}' >> /etc/ansible/hosts
       done
-    fi    
+    fi
+  else
+    echo 'Use volume mapping hosts'
   fi
 }
 
