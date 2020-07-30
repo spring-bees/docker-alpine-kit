@@ -35,12 +35,12 @@ init_ansible_hosts() {
 
       for index in "${!ANSIBLE_SSH_HOSTS_ARRAY[@]}"
       do
-        NAME = ${ANSIBLE_SSH_HOSTS_ARRAY[index]}
-        HOST = ${ANSIBLE_SSH_HOSTS_ARRAY[index]}
-        PORT = ${ANSIBLE_SSH_PORTS_ARRAY[index]}
-        USER = ${ANSIBLE_SSH_USER_ARRAY[index]}
-        PASS = ${ANSIBLE_SSH_PASS_ARRAY[index]}
-        SU_PASS = ${ANSIBLE_SU_PASS_ARRAY[index]}
+        NAME=${ANSIBLE_SSH_HOSTS_ARRAY[index]}
+        HOST=${ANSIBLE_SSH_HOSTS_ARRAY[index]}
+        PORT=${ANSIBLE_SSH_PORTS_ARRAY[index]}
+        USER=${ANSIBLE_SSH_USER_ARRAY[index]}
+        PASS=${ANSIBLE_SSH_PASS_ARRAY[index]}
+        SU_PASS=${ANSIBLE_SU_PASS_ARRAY[index]}
 
         echo '${NAME} ansible_ssh_host=${HOST} ansible_ssh_port=${PORT} ansible_ssh_user=${USER} ansible_ssh_pass=${PASS} ansible_become_pass=${SU_PASS}' >> /etc/ansible/hosts
       done
