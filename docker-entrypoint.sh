@@ -35,3 +35,9 @@ init_ansible_hosts() {
     done
   fi
 }
+
+_main() {
+  init_ansible_cfg
+  init_ansible_hosts
+  exec $@
+}

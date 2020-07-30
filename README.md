@@ -12,3 +12,9 @@
 * shadow
 * sshpass
 * ansible
+
+## Ansible
+
+```
+docker run --name ansible -it coolbeevip/docker-alpine-kit /bin/bash
+```
