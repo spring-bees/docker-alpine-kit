@@ -13,7 +13,10 @@ ENV LANG='en_US.UTF-8' \
 RUN set -x && \
     apk update && \
     apk add --no-cache bash tzdata openssh su-exec unzip libc6-compat libzmq ttf-dejavu curl shadow sshpass ansible && \
-    cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose && \
-    ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+COPY docker-entrypoint.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["docker-entrypoint.sh"]

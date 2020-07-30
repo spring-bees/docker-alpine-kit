@@ -12,4 +12,3 @@
 * shadow
 * sshpass
 * ansible
-* docker compose
