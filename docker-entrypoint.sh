@@ -42,8 +42,8 @@ init_ansible_hosts() {
         USER=${ANSIBLE_SSH_USER_ARRAY[index]}
         PASS=${ANSIBLE_SSH_PASS_ARRAY[index]}
         SU_PASS=${ANSIBLE_SU_PASS_ARRAY[index]}
-
-        echo '${NAME} ansible_ssh_host=${HOST} ansible_ssh_port=${PORT} ansible_ssh_user=${USER} ansible_ssh_pass=${PASS} ansible_become_pass=${SU_PASS}' >> /etc/ansible/hosts
+        echo 'add HOST $NAME'
+        echo '$NAME ansible_ssh_host=$HOST ansible_ssh_port=$PORT ansible_ssh_user=$USER ansible_ssh_pass=$PASS ansible_become_pass=$SU_PASS' >> /etc/ansible/hosts
       done
     fi
   else
