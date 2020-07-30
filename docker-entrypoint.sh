@@ -29,9 +29,9 @@ init_ansible_hosts() {
 
       IFS=', ' read -r -a ANSIBLE_SSH_HOSTS_ARRAY <<< $ANSIBLE_SSH_HOSTS
       IFS=', ' read -r -a ANSIBLE_SSH_PORTS_ARRAY <<< $ANSIBLE_SSH_PORTS
-      IFS=', ' read -r -a ANSIBLE_SSH_USER_ARRAY <<< $ANSIBLE_SSH_USER
-      IFS=', ' read -r -a ANSIBLE_SSH_PASS_ARRAY <<< $ANSIBLE_SSH_PASS
-      IFS=', ' read -r -a ANSIBLE_SU_PASS_ARRAY <<< $ANSIBLE_SU_PASS
+      IFS=', ' read -r -a ANSIBLE_SSH_USER_ARRAY <<< $ANSIBLE_SSH_USERS
+      IFS=', ' read -r -a ANSIBLE_SSH_PASS_ARRAY <<< $ANSIBLE_SSH_PASSS
+      IFS=', ' read -r -a ANSIBLE_SU_PASS_ARRAY <<< $ANSIBLE_SU_PASSS
 
       for index in "${!ANSIBLE_SSH_HOSTS_ARRAY[@]}"
       do
