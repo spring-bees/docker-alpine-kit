@@ -70,3 +70,9 @@ docker run --name ansible --rm -it \
   coolbeevip/docker-alpine-kit \
   /bin/bash
 ```
+
+### root 权限
+
+```
+ansible 192.168.0.1 --become --become-user root --become-method su -a 'docker ps'
+```
