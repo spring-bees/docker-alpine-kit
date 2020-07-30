@@ -12,19 +12,19 @@ init_config_path() {
 
 init_ansible_cfg() {
   if [ ! -d "/etc/ansible/ansible.cfg" ]; then
-    echo 'Create default ansible.cfg'
+    echo 'Create /etc/ansible/ansible.cfg'
     echo '[defaults]' > /etc/ansible/ansible.cfg
     echo 'host_key_checking=false' >> /etc/ansible/ansible.cfg
     echo 'command_warnings=false' >> /etc/ansible/ansible.cfg
   else
-    echo 'Use volume mapping ansible.cfg'
+    echo 'Load /etc/ansible/ansible.cfg'
   fi
 }
 
 init_ansible_hosts() {
   if [ ! -d "/etc/ansible/hosts" ]; then
     if [ "$ANSIBLE_SSH_HOSTS" != "" ]; then
-      echo 'Create custom ansible hosts'
+      echo 'Create /etc/ansible/hosts'
 
       echo '[default]' > /etc/ansible/hosts
 
@@ -47,7 +47,7 @@ init_ansible_hosts() {
       done
     fi
   else
-    echo 'Use volume mapping hosts'
+    echo 'Load /etc/ansible/hosts'
   fi
 }
 
