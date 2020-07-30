@@ -15,17 +15,34 @@
 
 ## ANSIBLE
 
+### 启动并进入镜像
+
+```
+docker run --name ansible --rm -it coolbeevip/docker-alpine-kit /bin/bash
+```
+
+镜像内部输入以下指令可以查看 ansible 版本，并可以执行其它 ansible 指令
+
+```
+ansible --version
+```
+
+### 启动时初始化 `hosts` 配置
+
 使用环境变量参数初始化 `hosts` 配置
 
 ```
-docker run --name ansible -it coolbeevip/docker-alpine-kit \
+docker run --name ansible --rm -it \
   -e ANSIBLE_SSH_HOSTS=192.168.0.1 \
   -e ANSIBLE_SSH_PORTS=22 \
   -e ANSIBLE_SSH_USERS=coolbeevip \
   -e ANSIBLE_SSH_PASSS=coolbeevip \
   -e ANSIBLE_SU_PASSS=123456 \
-  ansible 10.19.38.220 -a 'uptime'
+  coolbeevip/docker-alpine-kit \
+  /bin/bash
 ```
+
+进入镜像后，可以在 `/etc/ansible/hosts` 文件中看到已经初始化完毕
 
 * ANSIBLE_SSH_HOSTS 主机地址
 * ANSIBLE_SSH_PORTS SSH端口
@@ -43,8 +60,13 @@ ANSIBLE_SSH_PASSS=pass1,pass2
 ANSIBLE_SU_PASSS=supass1,supass2
 ```
 
+### 在外部卷中定义配置
+
 你可以在容器外部定义 `hosts` 和 `ansible.cfg` 文件，并使用卷映射到容器内部
 
 ```
-docker run --name ansible -it coolbeevip/docker-alpine-kit -v ./volume/ansible:/etc/ansible /bin/bash
+docker run --name ansible --rm -it \
+  -v ./volume/ansible:/etc/ansible \
+  coolbeevip/docker-alpine-kit \
+  /bin/bash
 ```
