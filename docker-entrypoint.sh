@@ -2,7 +2,8 @@
 echo "============================="
 set -eo pipefail
 shopt -s nullglob
-
+ansible --version
+echo "============================="
 init_config_path() {
   if [ ! -d "/etc/ansible" ]; then
     mkdir -p /etc/ansible
@@ -11,7 +12,7 @@ init_config_path() {
 
 init_ansible_cfg() {
   if [ ! -d "/etc/ansible/ansible.cfg" ]; then
-    echo 'Create ansible.cfg'
+    echo 'Create default ansible.cfg'
     echo '[defaults]' > /etc/ansible/ansible.cfg
     echo 'host_key_checking=false' >> /etc/ansible/ansible.cfg
     echo 'command_warnings=false' >> /etc/ansible/ansible.cfg
@@ -23,7 +24,7 @@ init_ansible_cfg() {
 init_ansible_hosts() {
   if [ ! -d "/etc/ansible/hosts" ]; then
     if [ "$ANSIBLE_SSH_HOSTS" != "" ]; then
-      echo 'Create ansible hosts'
+      echo 'Create custom ansible hosts'
 
       echo '[default]' > /etc/ansible/hosts
 
