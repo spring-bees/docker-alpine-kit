@@ -50,9 +50,7 @@ init_ansible_hosts() {
   fi
 }
 
-_main() {
-  init_config_path
-  init_ansible_cfg
-  init_ansible_hosts
-  exec $@
-}
+init_config_path
+init_ansible_cfg
+init_ansible_hosts
+exec "$@"
